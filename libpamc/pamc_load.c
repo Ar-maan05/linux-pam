@@ -316,13 +316,13 @@ int __pamc_valid_agent_id(int id_length, const char *id)
     int post, i;
 
     for (i=post=0 ; i < id_length; ++i) {
-	int ch = id[i++];
+	int ch = id[i];
 
 	if (isalpha((unsigned char)ch) || isdigit((unsigned char)ch) || (ch == '_')) {
 	    continue;
 	} else if (post && (ch == '.')) {
 	    continue;
-	} else if ((i > 1) && (!post) && (ch == '@')) {
+	} else if ((i > 0) && (!post) && (ch == '@')) {
 	    post = 1;
 	} else {
 	    D(("id=%s contains '%c' which is illegal", id, ch));
